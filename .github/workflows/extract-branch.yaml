@@ -1,0 +1,22 @@
+name: 🌳 Extract branch name
+
+on:
+  workflow_call:
+    outputs:
+      branch-name-extracted:
+        description: Branch name extracted, sanitized and slugified from git reference
+        value: ${{ jobs.extract-branch-name.outputs.branch-name-extracted }}
+
+jobs:
+  extract-branch-name:
+    name: Extract branch name
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🌳 Extract branch name
+        id: branch-name-extracted
+        uses: size-up/actions/.github/actions/extract-branch-name@v1
+
+    outputs:
+      branch-name-extracted: ${{ steps.branch-name-extracted.outputs.branch-name-extracted }}
